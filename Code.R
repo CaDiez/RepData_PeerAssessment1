@@ -39,3 +39,31 @@ meanStepCount.imp <- dayStepCount.imp %>% ungroup() %>%
 ggplot(dayStepCount.imp) + geom_histogram(aes(x = day.count), binwidth = 500) + 
         ggtitle('Histogram of total number of steps taken each day\nAfter imputation') + theme_bw() +
         xlab('Daily step count')
+
+day.type <- function(date) {
+        if (weekdays(date) %in% c('Saturday', 'Sunday')) {
+                return('weekend')
+        } else {
+                return('weekday')
+        }
+}
+
+##Step 4
+
+# set the locale for english weekdays
+Sys.setlocale("LC_TIME", "English")
+#Make dates dateobjects and generate weekday field
+dataActivity.wd <- dataActivity.Imputed %>% mutate(date = as.Date(date), weekDay = weekdays(date)) %>%
+# Calculate if weekend or weekday to create factor
+mutate(weekEnd.day = ifelse(weekDay %in% c('Saturday','Sunday'),'weekEnd','weekDay'))
+# Reorder weekend/weekday factor
+dataActivity.wd$weekEnd.day <- relevel(factor(dataActivity.wd$weekEnd.day), ref = 'weekEnd')
+# Average number of steps during weekend/weekdays
+dataActivity.wd.mean <- dataActivity.wd %>% group_by(interval,weekEnd.day) %>%
+        summarise(mean.steps = mean(steps, na.rm = T))
+
+ggplot(dataActivity.wd.mean) + geom_line(aes(x = interval, y = mean.steps)) + 
+        facet_wrap(~weekEnd.day,nrow = 2) + theme_bw() + 
+        ggtitle('WeekEnd & WeekDay Patterns') + 
+        xlab('Interval') +
+        ylab('Mean number of steps')
