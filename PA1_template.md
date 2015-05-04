@@ -61,7 +61,9 @@ median(dayStepCount$day.count, na.rm=T)
 ```
 
 ```r
-ggplot(dayStepCount) + geom_histogram(aes(x = day.count), binwidth = 1000) + theme_bw() + ggtitle('Total number of steps per day') + xlab('Number of steps per day')
+ggplot(dayStepCount) + geom_histogram(aes(x = day.count), binwidth = 1000) +
+        theme_bw() + ggtitle('Total number of steps per day') + 
+        xlab('Number of steps per day')
 ```
 
 ![](PA1_template_files/figure-html/mean_median-1.png) 
@@ -144,7 +146,9 @@ summarise(day.count = sum(steps))
 meanStepCount.imp <- dayStepCount.imp %>% ungroup() %>% 
 summarise(mean = mean(day.count, na.rm = T), median = median(day.count, na.rm = T))
 
-ggplot(dayStepCount.imp) + geom_histogram(aes(x = day.count), binwidth = 1000) + ggtitle('Histogram of total number of steps taken each day\nAfter imputation') + theme_bw() + xlab('Daily step count')
+ggplot(dayStepCount.imp) + geom_histogram(aes(x = day.count), binwidth = 1000) + 
+        ggtitle('Histogram of total number of steps taken each day\nAfter imputation') + 
+        theme_bw() + xlab('Daily step count')
 ```
 
 ![](PA1_template_files/figure-html/histogram-1.png) 
@@ -209,7 +213,9 @@ summarise(mean.steps = mean(steps, na.rm = T))
 
 
 ```r
-ggplot(dataActivity.wd.mean) + geom_line(aes(x = interval, y = mean.steps)) + facet_wrap(~weekEnd.day,nrow = 2) + theme_bw() + ggtitle('WeekEnd & WeekDay Patterns') + xlab('Interval') + ylab('Mean number of steps')
+ggplot(dataActivity.wd.mean) + geom_line(aes(x = interval, y = mean.steps)) + 
+        facet_wrap(~weekEnd.day,nrow = 2) + theme_bw() + ggtitle('WeekEnd & WeekDay Patterns') + 
+        xlab('Interval') + ylab('Mean number of steps')
 ```
 
 ![](PA1_template_files/figure-html/Plot WE & Wd-1.png) 

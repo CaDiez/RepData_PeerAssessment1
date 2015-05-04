@@ -30,7 +30,9 @@ dayStepCount <- dataActivity %>% group_by(date) %>% summarise(day.count = sum(st
 mean(dayStepCount$day.count, na.rm=T)
 median(dayStepCount$day.count, na.rm=T)
 
-ggplot(dayStepCount) + geom_histogram(aes(x = day.count), binwidth = 1000) + theme_bw() + ggtitle('Total number of steps per day') + xlab('Number of steps per day')
+ggplot(dayStepCount) + geom_histogram(aes(x = day.count), binwidth = 1000) +
+        theme_bw() + ggtitle('Total number of steps per day') + 
+        xlab('Number of steps per day')
 ```
 
 ## What is the average daily activity pattern?
@@ -81,7 +83,9 @@ summarise(day.count = sum(steps))
 meanStepCount.imp <- dayStepCount.imp %>% ungroup() %>% 
 summarise(mean = mean(day.count, na.rm = T), median = median(day.count, na.rm = T))
 
-ggplot(dayStepCount.imp) + geom_histogram(aes(x = day.count), binwidth = 1000) + ggtitle('Histogram of total number of steps taken each day\nAfter imputation') + theme_bw() + xlab('Daily step count')
+ggplot(dayStepCount.imp) + geom_histogram(aes(x = day.count), binwidth = 1000) + 
+        ggtitle('Histogram of total number of steps taken each day\nAfter imputation') + 
+        theme_bw() + xlab('Daily step count')
 ```
 
 The comparison between means and median of the imputed and original data sets are almost the same, the strategy is working as expected.
@@ -115,7 +119,9 @@ summarise(mean.steps = mean(steps, na.rm = T))
 2.- Make a panel plot containing a time series plot (i.e.  type = "l" ) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). The plot should look something like the following, which was created using simulated data:
 
 ```{r Plot WE & Wd}
-ggplot(dataActivity.wd.mean) + geom_line(aes(x = interval, y = mean.steps)) + facet_wrap(~weekEnd.day,nrow = 2) + theme_bw() + ggtitle('WeekEnd & WeekDay Patterns') + xlab('Interval') + ylab('Mean number of steps')
+ggplot(dataActivity.wd.mean) + geom_line(aes(x = interval, y = mean.steps)) + 
+        facet_wrap(~weekEnd.day,nrow = 2) + theme_bw() + ggtitle('WeekEnd & WeekDay Patterns') + 
+        xlab('Interval') + ylab('Mean number of steps')
 ```
 
 We can notate differences in the patterns of the weekdays and weekend, and certain similarities at the beggining of the interval.

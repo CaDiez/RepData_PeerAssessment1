@@ -15,7 +15,6 @@ meanStepCount <- dayStepCount %>% ungroup() %>%
 summarise(mean = mean(day.count, na.rm = T), median = median(day.count, na.rm = T))
 meanStepCount
 
-
 tidyData <- dataActivity[!is.na(dataActivity$date) & !is.na(dataActivity$steps),]
 plotData <- tapply(tidyData$steps, tidyData$interval, mean)
 plot(names(plotData), plotData,type="l", xlab = "Interval", ylab = "Average Steps")
@@ -47,8 +46,6 @@ day.type <- function(date) {
                 return('weekday')
         }
 }
-
-##Step 4
 
 # set the locale for english weekdays
 Sys.setlocale("LC_TIME", "English")
