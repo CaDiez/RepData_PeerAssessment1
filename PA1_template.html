@@ -120,7 +120,7 @@ maxInterval</code></pre>
 ##  3rd Qu.: 12.00   3rd Qu.:2012-11-15   3rd Qu.:1766.2  
 ##  Max.   :806.00   Max.   :2012-11-30   Max.   :2355.0  
 ##  NA's   :2304</code></pre>
-<p>2.- With this simple function we know that there are 2304 NA’s only in the steps field, and now we can proceed to impute missing values, the strategy that I’m going to use is use the mean of steps taken at each interval.</p>
+<p>2.- With this simple function we know that there are 2304 NA’s only in the steps field, and now we can proceed to impute missing values. <strong>The strategy that I’m going to use for imputing missing values is use the mean of steps taken at each interval.</strong></p>
 <pre class="r"><code># Mean step count per interval
 MeanActivity &lt;- dataActivity %&gt;% group_by(interval) %&gt;% 
 summarise(meanSteps = mean(steps, na.rm = T))

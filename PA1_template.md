@@ -114,7 +114,7 @@ summary(dataActivity)
 ##  NA's   :2304
 ```
 
-2.- With this simple function we know that there are 2304 NA's only in the steps field, and now we can proceed to impute missing values, the strategy that I'm going to use is use the mean of steps taken at each interval.
+2.- With this simple function we know that there are 2304 NA's only in the steps field, and now we can proceed to impute missing values. **The strategy that I'm going to use for imputing missing values is use the mean of steps taken at each interval.**
 
 
 ```r
